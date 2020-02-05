@@ -1,0 +1,127 @@
+{
+  "name": "typescript-base",
+  "version": "0.1.0",
+  "description": "Example base for typescript projects",
+  "engines": {
+    "node": "10.14.1",
+    "npm": "6.4.1"
+  },
+  "scripts": {
+    "build": "tsc",
+    "console": "tsc && node --experimental-repl-await ./dist/console.js",
+    "cover": "npm run test-basic -- --coverage",
+    "eslint-check": "eslint --print-config .eslintrc.js --ignore-pattern ./.eslintrc.js | eslint-config-prettier-check",
+    "lint": "tsc --noEmit && eslint \"*/**/*.ts\"",
+    "lint-diff": "git diff --name-only --cached --relative | grep \\\\.ts$ | xargs eslint",
+    "lint-fix": "eslint \"**/*.ts\" --fix",
+    "migrations": "ts-node-dev ./node_modules/typeorm/cli.js migration:run --config ./config/typeorm.ts",
+    "migrations-undo": "ts-node-dev ./node_modules/typeorm/cli.js migration:revert --config ./config/typeorm.ts",
+    "migrations-test": "NODE_ENV=testing ts-node-dev ./node_modules/typeorm/cli.js migration:run --config ./config/typeorm.ts",
+    "migrations-create": "ts-node-dev ./node_modules/typeorm/cli.js migration:create --config ./config/typeorm.ts -n",
+    "migrations-generate": "ts-node-dev ./node_modules/typeorm/cli.js migration:generate --config ./config/typeorm.ts -n",
+    "outdated": "npm outdated --depth 0",
+    "postinstall": "npm run build",
+    "precommit": "npm run lint-diff",
+    "prepush": "npm test",
+    "prestart": "npm run lint",
+    "pretest": "npm run lint",
+    "dev": "ts-node-dev --respawn --transpileOnly ./server.ts",
+    "start": "npm run build && node ./dist/server.js",
+    "test": "npm run test-basic -- --runInBand",
+    "test-basic": "NODE_ENV=testing jest --forceExit --detectOpenHandles --verbose",
+    "test-inspect": "NODE_ENV=testing node --inspect --debug-brk --detectOpenHandles jest"
+  },
+  "cacheDirectories": [
+    "node_modules"
+  ],
+  "main": "app.js",
+  "author": "Wolox",
+  "homepage": "https://github.com/mpicollo-wolox/typescript-base",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mpicollo-wolox/typescript-base.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mpicollo-wolox/typescript-base/issues",
+    "email": "tls@wolox.com.ar"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "**/*.ts",
+      "!**/console.js",
+      "!**/node_modules/**",
+      "!**/build/**",
+      "!**/migrations/**",
+      "!**/config/**",
+      "!**/scripts/**",
+      "!**/docs/**"
+    ],
+    "testEnvironment": "node",
+    "transform": {
+      "^.+\\.ts?$": "ts-jest"
+    },
+    "setupFilesAfterEnv": [
+      "<rootDir>/tests/setup.ts"
+    ]
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "express-wolox-logger": "0.0.2",
+    "jwt-simple": "^0.5.1",
+    "pg": "^7.18.1",
+    "reflect-metadata": "^0.1.13",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4",
+    "rollbar": "^2.3.9",
+    "typeorm": "^0.2.22",
+    "umzug": "^2.1.0"
+  },
+  "devDependencies": {
+    "@types/babel-core": "^6.25.6",
+    "@types/babel-traverse": "^6.25.5",
+    "@types/bcryptjs": "^2.4.2",
+    "@types/bluebird": "^3.5.27",
+    "@types/body-parser": "^1.17.0",
+    "@types/cors": "^2.8.5",
+    "@types/express": "^4.17.0",
+    "@types/jest": "^24.9.1",
+    "@types/jwt-simple": "^0.5.33",
+    "@types/node": "^12.12.26",
+    "@types/pg": "^7.14.1",
+    "@types/request-promise": "^4.1.44",
+    "@types/supertest": "^2.0.8",
+    "@types/umzug": "^2.2.2",
+    "@types/validator": "^10.11.3",
+    "@typescript-eslint/eslint-plugin": "^2.19.0",
+    "@typescript-eslint/eslint-plugin-tslint": "^2.19.0",
+    "@typescript-eslint/parser": "^2.19.0",
+    "babel": "6.23.0",
+    "babel-core": "6.26.0",
+    "babel-eslint": "^8.2.2",
+    "babel-jest": "^25.1.0",
+    "babel-preset-env": "^1.7.0",
+    "dictum.js": "^1.0.0",
+    "dotenv": "^5.0.1",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-config-wolox": "^3.0.2",
+    "eslint-config-wolox-node": "^2.2.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "husky": "^0.14.3",
+    "jest": "^24.9.0",
+    "nodemon": "^1.18.7",
+    "prettier": "^1.19.1",
+    "prettier-eslint": "^9.0.0",
+    "prompt": "^1.0.0",
+    "supertest": "^3.4.2",
+    "ts-jest": "^24.3.0",
+    "ts-node-dev": "1.0.0-pre.40",
+    "tslint": "^5.20.0",
+    "typescript": "^3.7.5"
+  }
+}
