@@ -6,5 +6,14 @@ export class User {
   id: number;
 
   @Column('varchar')
-  username: string;
+  name: string;
+
+  @Column({ type: 'varchar', name: 'last_name' })
+  lastName: string;
+
+  @Column({ type: 'varchar', unique: true })
+  email: string;
+
+  @Column('varchar')
+  password: string;
 }

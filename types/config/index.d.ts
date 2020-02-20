@@ -34,4 +34,8 @@ export interface IConfig {
   todos: {
     baseUrl: ENV_VAR;
   };
+  hearthstone: {
+    baseUrl: ENV_VAR;
+    apiKey: ENV_VAR;
+  };
 }

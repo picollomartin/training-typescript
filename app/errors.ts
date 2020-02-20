@@ -19,3 +19,10 @@ export const authError = (message: string): InternalError => setInternalError(me
 
 export const NOT_FOUND = 'not_found';
 export const notFound = (message: string): InternalError => setInternalError(message, NOT_FOUND);
+
+export const SCHEMA_ERROR = 'schema_error';
+export const schemaError = (message: string): InternalError => setInternalError(message, SCHEMA_ERROR);
+
+export const HEARTHSTONE_API = 'hearthstone_api';
+export const hearthstoneApi = (message: string = 'Hearthstone api fail'): InternalError =>
+  setInternalError(message, HEARTHSTONE_API);

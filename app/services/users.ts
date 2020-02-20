@@ -1,29 +1,15 @@
-import { DeepPartial } from 'utils';
-
-import { getRepository, FindManyOptions, FindConditions, Repository } from 'typeorm';
+import { getRepository, Repository } from 'typeorm';
 import { User } from '../models/user';
+import { databaseError } from '../errors';
 
 const userRepository = (): Repository<User> => getRepository(User);
 
-export function findUser(options?: FindConditions<User>): Promise<User | undefined> {
-  return userRepository().findOne(options);
-}
-
-export function createAndSave(user: User): Promise<User> {
-  return userRepository().save(user);
-}
-
-export function findAll(options?: FindManyOptions): Promise<User[]> {
-  return userRepository().find(options);
-}
-
-export function createMany(users: DeepPartial<User>[]): Promise<User[]> {
-  return userRepository().save(users);
+export function createUser(user: User): Promise<User> {
+  return userRepository()
+    .save(user)
+    .catch((err: Error) => Promise.reject(databaseError(err.message)));
 }
 
 export default {
-  findAll,
-  createMany,
-  findUser,
-  createAndSave
+  createUser
 };

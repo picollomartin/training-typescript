@@ -37,7 +37,7 @@ const config: IConfig = {
       host: process.env.DB_HOST || 'localhost',
       port: Number(process.env.DB_PORT) || 5432,
       database: process.env.DB_NAME || 'database',
-      username: process.env.DB_USERNAME || 'username',
+      username: process.env.DB_USERNAME || 'mpicollo',
       password: process.env.DB_PASSWORD || '',
       type: 'postgres',
       logging: logger.info
@@ -58,6 +58,10 @@ const config: IConfig = {
   },
   todos: {
     baseUrl: process.env.TODOS_API_BASE_URL || 'https://jsonplaceholder.typicode.com'
+  },
+  hearthstone: {
+    baseUrl: process.env.HEARTHSTONE_API_BASE_URL || 'https://omgvamp-hearthstone-v1.p.rapidapi.com',
+    apiKey: process.env.HEARTHSTONE_API_KEY
   }
 };
 
