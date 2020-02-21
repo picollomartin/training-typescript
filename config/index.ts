@@ -40,7 +40,7 @@ const config: IConfig = {
       username: process.env.DB_USERNAME || 'mpicollo',
       password: process.env.DB_PASSWORD || '',
       type: 'postgres',
-      logging: logger.info
+      logging: true
     },
     api: {
       bodySizeLimit: process.env.API_BODY_SIZE_LIMIT,

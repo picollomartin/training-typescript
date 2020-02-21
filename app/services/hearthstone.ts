@@ -68,6 +68,10 @@ export function getAllCards(): Promise<AllCardsResponse> {
   return requestHearthstone({ path: 'cards' });
 }
 
+export function getCardById(cardId: string): Promise<Card> {
+  return requestHearthstone({ path: `cards/${cardId}` }).then((card: Card[]) => card[0]);
+}
+
 export function getInfo(): Promise<InfoResponse> {
   return requestHearthstone({ path: 'info' });
 }
@@ -76,4 +80,4 @@ export function getInfo(): Promise<InfoResponse> {
   return (something as Card).cardId !== undefined;
 } */
 
-export default { getAllCards, getInfo };
+export default { getAllCards, getInfo, getCardById };

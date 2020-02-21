@@ -12,9 +12,9 @@ const typeOrmConfig: ConnectionOptions = {
   migrations: [generatePath('./migrations/migrations/*')],
   subscribers: [generatePath('./subscribers/**/*')],
   cli: {
-    entitiesDir: generatePath('./app/models'),
-    migrationsDir: generatePath('./migrations/migrations'),
-    subscribersDir: generatePath('./subscribers')
+    entitiesDir: './app/models',
+    migrationsDir: './migrations/migrations',
+    subscribersDir: './subscribers'
   }
 };
 
